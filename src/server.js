@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const friendsRouter = require('./routes/friends.route');
 const messagesRouter = require('./routes/messages.route');
@@ -16,6 +17,10 @@ app.use((req, res, next) => {
 
 app.use('/friends', friendsRouter);
 app.use('/messages', messagesRouter);
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'skimountain.jpg'));
+})
 
 app.listen(PORT, () => {
     console.log("The app is listing the port:", PORT)
